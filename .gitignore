@@ -1,3 +1,4 @@
 /dc-venv/
 .idea
 /retail_pg/
+__pycache__/

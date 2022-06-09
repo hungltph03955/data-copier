@@ -1,0 +1,20 @@
+docker run --name retail_pg -e POSTGRES_PASSWORD=itversity -d -v /Users/hungsuu/Documents/Data-engineer/Internal/bootcamp/data-copier/retail_pg:/var/lib/postgresql/data -v /Users/hungsuu/Documents/Data-engineer/Research/data/retail_db_json:/retail_db_json -p 5452:5432 postgres
+
+
+CREATE DATABASE retail_db;
+CREATE USER retail_user WITH ENCRYPTED PASSWORD 'itversity';
+GRANT ALL PRIVILEGES ON DATABASE retail_db TO retail_user;
+
+
+docker exec -it retail_pg psql -U retail_user -d retail_db  -f /data/retail_db/create_db_tables_pg.sql
+
+
+fp = '//Users//hungsuu//Documents//Data-engineer//Research/data//retail_db_json//order_items/part-r-00000-6b83977e-3f20-404b-9b5f-29376ab1419e'
+
+fp = '/Users/hungsuu/Documents/Data-engineer/Research/data/retail_db_json/order_items/part-r-00000-6b83977e-3f20-404b-9b5f-29376ab1419e'
+
+
+
+import pandas as pd
+df = pd.read_json(fp, lines=True)
+df.shape()
